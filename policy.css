@@ -1,0 +1,49 @@
+/* Styles for Policy Pages */
+body {
+  background-color: white; /* White background for the body */
+  color: black; /* Black text color */
+  font-family: Arial, sans-serif; /* Use a clean, sans-serif font */
+  margin: 0; /* Remove default body margin */
+}
+
+/* Header */
+header {
+  background-color: white; /* White background for header */
+  text-align: center; /* Center header text */
+  padding: 20px 0; /* Add padding for spacing */
+}
+
+h1 {
+  color: black; /* Ensure main title is black */
+  font-size: 36px; /* Set font size for the title */
+}
+
+/* Main content */
+main {
+  padding: 20px; /* Add padding for spacing */
+}
+
+h2 {
+  font-size: 28px; /* Set font size for section titles */
+  margin-top: 20px; /* Add margin above section titles */
+  border-bottom: 2px solid #ccc; /* Underline section titles */
+  padding-bottom: 5px; /* Add space below titles */
+}
+
+section {
+  margin-bottom: 30px; /* Space between sections */
+}
+
+p {
+  line-height: 1.6; /* Improve readability with line height */
+}
+
+/* Links */
+a {
+  color: blue; /* Set link color */
+  text-decoration: underline; /* Underline links */
+}
+
+a:hover {
+  color: darkblue; /* Darker color on hover */
+}
