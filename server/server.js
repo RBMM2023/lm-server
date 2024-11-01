@@ -1,11 +1,11 @@
-//lm-server/server/server.js
 const express = require('express');
 const dotenv = require('dotenv');
 const { createClient } = require('@supabase/supabase-js');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-const authMiddleware = require('./middleware/authMiddleware');
-const cron = require('node-cron');
+const authMiddleware = require('./middleware/authMiddleware'); // Ensure this points to your middleware file
+const { DateTime } = require('luxon');
+const cron = require('node-cron'); // Import node-cron for scheduling
 
 // Load environment variables from .env file
 dotenv.config();
@@ -28,9 +28,7 @@ app.get('/', (req, res) => {
 
 // Login endpoint
 app.post('/api/login', (req, res) => {
-  // Log received email and password (you may want to avoid logging passwords in production)
-  console.log('Received email:');
-  console.log('Received password:');
+  const { email, password } = req.body;
 
   // Check if user credentials match .env values
   if (
@@ -40,11 +38,9 @@ app.post('/api/login', (req, res) => {
     const token = jwt.sign({ email: email }, process.env.JWT_SECRET, {
       expiresIn: '1h',
     });
-    console.log('Login successful!');
     res.json({ message: 'Login successful', token }); // Send token to client
   } else {
-    console.log('Invalid login attempt!');
-    res.status(401).json({ error: 'Invalid email or password!' });
+    res.status(401).json({ error: 'Invalid email or password' });
   }
 });
 
@@ -136,20 +132,22 @@ app.post('/api/calendar/book', authMiddleware, async (req, res) => {
   }
 });
 
-const { DateTime } = require('luxon'); // Install luxon for easier date handling
-
-// Function to clear past bookings
 async function clearPastBookings() {
+  // Get today's date in the local time zone
   const today = DateTime.local().startOf('day');
-  const formattedDate = today.toISODate();
+
+  // Format today's date to match Supabase's date format (YYYY-MM-DD)
+  const formattedDate = today.toISODate(); // This gets the date in YYYY-MM-DD format
 
   console.log('Attempting to clear past bookings...');
+  console.log('Current date:', formattedDate); // Log the formatted date
 
   try {
+    // Fetch past bookings for debugging
     const { data: pastBookings, error: fetchError } = await supabase
       .from('booking_calendar')
       .select('*')
-      .lt('date', formattedDate);
+      .lt('date', formattedDate); // Use formatted date
 
     if (fetchError) {
       console.error('Error fetching past bookings:', fetchError);
@@ -157,11 +155,13 @@ async function clearPastBookings() {
       console.log('Past bookings found for deletion:', pastBookings);
     }
 
+    // Proceed to delete if there are past bookings
     if (pastBookings && pastBookings.length > 0) {
+      // Delete bookings where the date is less than today
       const { error } = await supabase
         .from('booking_calendar')
         .delete()
-        .lt('date', formattedDate);
+        .lt('date', formattedDate); // Use formatted date
 
       if (error) {
         console.error('Error clearing past bookings:', error);
@@ -176,14 +176,14 @@ async function clearPastBookings() {
   }
 }
 
+clearPastBookings();
 // Schedule the clearPastBookings function to run daily at midnight
 cron.schedule('0 0 * * *', () => {
   console.log('Running scheduled task: clearPastBookings');
   clearPastBookings();
 });
-
 // Start server
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
