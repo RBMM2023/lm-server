@@ -1,0 +1,492 @@
+* {
+  box-sizing: border-box;
+  max-width: 100vw;
+}
+
+body {
+  text-align: center;
+  background-color: black;
+}
+
+/*header for all pages*/
+header {
+  background-image: url(./images/lakeView.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  height: 400px;
+  text-wrap: wrap;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+h1 {
+  text-shadow: rgb(139, 138, 138) -14px 11px 3px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 60px;
+  color: #ecf0ec;
+  font-family: 'Varela Round', sans-serif;
+  font-weight: bolder;
+  font-size: 60px;
+  margin: 20px 0;
+  padding: 10px;
+}
+
+nav {
+  margin-top: auto;
+}
+
+nav ul {
+  border-style: solid;
+  border-width: 4px;
+  border-color: #3baa3d;
+  border-left: none;
+  border-right: none;
+  list-style-type: none;
+  background-color: rgba(204, 210, 214, 0.3);
+  padding-left: 2px;
+  padding-right: 2px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  position: relative;
+  margin: 0;
+  padding: 10px 0;
+}
+
+nav a {
+  color: #2eff31;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 26px;
+  text-decoration: none;
+  font-weight: bolder;
+  padding: 2px;
+}
+
+nav li {
+  display: inline-block;
+  padding: 2px;
+  text-overflow: none;
+  color: rgb(242, 238, 238);
+  font-style: italic;
+  font-size: larger;
+}
+
+@media only screen and (max-width: 768px) {
+  header {
+    height: auto;
+  }
+
+  h1 {
+    font-size: 40px;
+    text-shadow: rgb(139, 138, 138) -14px 11px 3px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 60px;
+    color: #ecf0ec;
+    font-family: 'Varela Round', sans-serif;
+    font-weight: bolder;
+  }
+
+  nav {
+    margin-top: 40px;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    background-color: rgba(204, 210, 214, 0.2);
+  }
+
+  nav a {
+    font-size: 18px;
+  }
+}
+
+/*for main on all pages*/
+main {
+  margin-top: 20px;
+  padding-top: 50px;
+}
+
+@media (max-width: 768px) {
+  nav li {
+    padding: 5px; /* Reduce padding for smaller screens */
+  }
+}
+
+/*video and video controls*/
+video {
+  border-radius: 10%;
+  background-color: #0efc425b;
+  max-width: 100%;
+  height: auto;
+}
+
+#playPauseBtn {
+  cursor: pointer;
+}
+
+#fullscreenBtn {
+  cursor: pointer;
+}
+
+#volumeSlider {
+  cursor: grab;
+}
+
+label {
+  color: rgb(44, 202, 26);
+  font-size: 24px;
+}
+
+.volume {
+  border: 1px, white, solid;
+  display: inline-block;
+  background-color: rgb(94, 92, 92);
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.videoBtn {
+  margin: 0 5px; /* Space between buttons */
+  padding: 15px 20px; /* Increase button padding for easier tapping */
+  font-size: 24px; /* Adjust font size for mobile */
+  border: 1px solid red; /* Temporary border for testing */
+  background-color: #056f07; /* Button background color */
+  color: white; /* Button text color */
+  cursor: pointer; /* Pointer cursor for buttons */
+  border-radius: 5px; /* Rounded corners */
+  touch-action: manipulation;
+  min-width: 100px;
+}
+
+.videoBtn:hover {
+  background-color: #2e8a2e; /* Darker green on hover */
+}
+
+/*titles for pages*/
+.title {
+  color: #3baa3d;
+  font-size: 40px;
+  text-decoration: underline;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+/*main write up*/
+article {
+  font-size: 22px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: rgb(245, 244, 247);
+  font-style: italic;
+  line-height: 1.3;
+  padding: 40px;
+  text-align: left;
+}
+
+article a {
+  color: rgb(245, 244, 247);
+}
+
+/*footer*/
+footer {
+  background-color: rgb(165, 167, 168);
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 0; /* Add padding for spacing */
+}
+
+.flexbox {
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  overflow: hidden;
+  box-sizing: border-box;
+  flex-wrap: nowrap;
+  padding-bottom: 20px;
+}
+
+.flexbox > .copyright p {
+  font-size: 17px;
+  color: rgb(4, 4, 4);
+  margin-bottom: 0;
+  padding-right: 10px;
+}
+
+.flexbox .tower img {
+  height: auto;
+  max-height: 20px;
+  max-width: 50px;
+  margin-left: 10px;
+  margin-bottom: 0;
+}
+
+/* Media query for mobile responsiveness
+@media only screen and (max-width: 768px) {
+  .flexbox {
+    height: 40px; /* Allow the footer to adjust in height
+  }
+
+  .flexbox > .copyright p {
+    font-size: 10px; /* Reduce font size for smaller screens
+  }
+
+  .flexbox .tower img {
+    max-height: 15px; /* Reduce image size on smaller screens
+    max-width: 40px;
+  }
+}
+
+/* Media query for mobile responsiveness */
+@media only screen and (max-width: 768px) {
+  footer {
+    display: flex; /* Ensure footer uses flexbox */
+    flex-direction: column; /* Stack children vertically */
+    padding: 20px 0; /* Add more padding for mobile spacing */
+    background-color: rgb(165, 167, 168);
+  }
+
+  .flexbox {
+    height: auto; /* Allow height to adjust based on content */
+    flex-direction: row; /* Stack items vertically on smaller screens */
+    align-items: center; /* Center items */
+    justify-content: center; /* Center content vertically */
+    padding-bottom: 10px; /* Adjust padding for mobile */
+  }
+
+  .flexbox > .copyright p {
+    font-size: 14px; /* Slightly smaller font size for mobile */
+    text-align: center; /* Center text */
+    margin: 5px 0; /* Add some margin for spacing */
+  }
+
+  .flexbox .tower img {
+    max-height: 80px; /* Reduce image size on smaller screens */
+    max-width: 60px; /* Keep width proportional */
+  }
+
+  .footer-links {
+    font-size: 14px; /* Adjust link size for smaller screens */
+    text-align: center; /* Center the links */
+    margin-top: 10px; /* Space between copyright section and links */
+  }
+
+  .footer-links a {
+    margin: 0 5px; /* Space between links */
+    color: rgb(6, 36, 201); /* Keep link color consistent */
+    text-decoration: none; /* Keep text styling */
+  }
+
+  .footer-links a:hover {
+    text-decoration: underline; /* Underline on hover for interaction */
+  }
+}
+
+/* Gallery Styles */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 100px;
+}
+
+.gallery img {
+  width: 100px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.gallery img:hover,
+.gallery img:focus {
+  transform: scale(1.05);
+  outline: 1px solid #00f;
+}
+
+/* Fullscreen Styles */
+.fullscreen-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.fullscreen-image {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  font-size: 30px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 20px;
+  z-index: 1001;
+}
+
+.prev-btn {
+  left: 20px;
+}
+
+.next-btn {
+  right: 20px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 40px;
+  color: white;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+/* Accessibility - Focus */
+button:focus {
+  outline: 1px solid #00f;
+}
+
+img:focus {
+  outline: 1px solid #00f;
+}
+
+/*contact us page*/
+.contact ul a {
+  color: white;
+}
+
+.contact li {
+  list-style: none;
+  line-height: 4;
+}
+
+/*video button test*/
+/*.media-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px; /* Add some space between video and controls *
+}
+
+/*button {
+  margin: 5px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #3baa3d; /* Change to desired color */
+/* color: white;
+  border: none;
+  border-radius: 5px;
+  z-index: 100; /* Ensure it's above other elements 
+}*/
+/* Modal styling */
+#cookieModal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+#cookieModalContent {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 600px;
+  text-align: center;
+}
+
+#cookieModal h2 {
+  margin-top: 0;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.modal-buttons button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.accept-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.reject-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Media query for mobile responsiveness */
+@media only screen and (max-width: 768px) {
+  #cookieModal {
+    padding: 10px; /* Adjust padding for mobile */
+  }
+
+  #cookieModalContent {
+    padding: 15px; /* Less padding on mobile */
+    width: 90%; /* Wider for mobile */
+    max-width: 90%; /* Ensure it doesn't overflow */
+  }
+
+  .modal-buttons {
+    flex-direction: column; /* Stack buttons vertically */
+  }
+
+  .modal-buttons button {
+    width: 100%; /* Make buttons full width on mobile */
+    margin-bottom: 10px; /* Space between buttons */
+  }
+
+  .modal-buttons button:last-child {
+    margin-bottom: 0; /* No margin for the last button */
+  }
+}
+
+/*calendar*/
+
+#calendar {
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(252, 250, 250, 0.9);
+  border-radius: 10px;
+}
+
+#login-status {
+  background-color: #2eff31;
+  color: black;
+}
+
+#login-container {
+  background-color: #2eff31;
+  margin-bottom: 20px;
+}

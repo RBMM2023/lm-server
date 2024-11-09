@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Gallery page for Leyland Mill Fishery" />
+    <title>The Lake</title>
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
+    <meta property="og:title" content="Leyland Mill Fishery" />
+    <meta
+      property="og:description"
+      content="Enjoy a day at Leyland Mill Fishery. Discover our gallery, prices, rules, and more!"
+    />
+    <meta property="og:image" content="../images/lakeView.jpg" />
+    <meta
+      property="og:url"
+      content="https://www.leylandmillfishery.co.uk/gallery"
+    />
+    <meta property="og:type" content="website" />
+    <script src="./policies.js" type="module" defer></script>
+    <script src="./gallery.js" type="module" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1><b>Leyland Mill Fishery</b></h1>
+      <nav data-toggle="tab">
+        <ul>
+          <li><a href="index.html">The Lake</a></li>
+          <li>Gallery</li>
+          <li><a href="prices.html">Prices</a></li>
+          <li><a href="rules.html">Rules</a></li>
+          <li><a href="contactUs.html">Contact Us</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="title">
+        <h2>Gallery</h2>
+      </div>
+      <div
+        id="gallery"
+        class="gallery"
+        role="list"
+        aria-label="Image-Gallery"
+      ></div>
+      <!-- Fullscreen Overlay -->
+      <div
+        id="fullscreenOverlay"
+        class="fullscreen-overlay"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="fullscreenImage"
+      >
+        <img
+          id="fullscreenImage"
+          class="fullscreen-image"
+          alt="Full size image"
+        />
+        <button
+          id="prevBtn"
+          class="nav-btn prev-btn"
+          aria-label="Previous Image"
+        >
+          &#10094;
+        </button>
+        <button id="nextBtn" class="nav-btn next-btn" aria-label="Next Image">
+          &#10095;
+        </button>
+        <button id="closeBtn" class="close-btn" aria-label="Close Fullscreen">
+          &times;
+        </button>
+      </div>
+      <div id="modalContainer"></div>
+    </main>
+    <footer>
+      <div class="flexbox">
+        <div class="tower">
+          <img
+            src="../images/tower.jpeg"
+            alt="Rupert's Tower"
+            height="auto"
+            width="20px"
+          />
+        </div>
+        <div class="copyright">
+          <p>
+            Website designed by Royal Blue Media Machinance © (R.B.M.M)-2024 All
+            rights reserved.
+          </p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="privacyPolicy.html" target="_blank">Privacy Policy</a> |
+        <a href="cookiePolicy.html" target="_blank">Cookie Policy</a>
+      </div>
+    </footer>
+  </body>
+</html>
