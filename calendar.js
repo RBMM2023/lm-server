@@ -1,4 +1,4 @@
-/*client/calendar.js
+//client/calendar.js
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -21,11 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const token = sessionStorage.getItem('token'); // Get token for fetching events
 
       try {
-        const response = await fetch('http://localhost:3000/api/calendar', {
-          headers: {
-            'Authorization': `Bearer ${token}`, // Include the token if available
-          },
-        });
+        const response = await fetch(
+          /*'http://localhost:3000/api/calendar',*/ 'https://lm-server-server.onrender.com/api/calendar',
+          {
+            headers: {
+              'Authorization': `Bearer ${token}`, // Include the token if available
+            },
+          }
+        );
         const data = await response.json();
 
         // Transform data to FullCalendar events format
@@ -63,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       try {
         const response = await fetch(
-          'http://localhost:3000/api/calendar/book',
+          /*'http://localhost:3000/api/calendar/book',*/ 'https://lm-server-server.onrender.com/api/calendar/book',
           {
             method: 'POST',
             headers: {
@@ -99,9 +102,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   calendar.render();
-});*/
+});
 
-//use the below code locally
+//render update 1
 /*import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -207,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
   calendar.render();
 });*/
 
-document.addEventListener('DOMContentLoaded', () => {
+/*document.addEventListener('DOMContentLoaded', () => {
   const calendarEl = document.getElementById('calendar');
 
   // Initialize the calendar
@@ -303,4 +306,4 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   calendar.render();
-});
+});*/
