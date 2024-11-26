@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/lm-server-client.git/',
+  base: '/lm-server-client/',
   build: {
     rollupOptions: {
       input: {
