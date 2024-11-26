@@ -74,7 +74,7 @@ window.addEventListener('beforeunload', function () {
   sessionStorage.removeItem('token');
 });*/
 
-const loginUrl = 'https://lm-server-server.onrender.com/api/login';
+const loginUrl = 'https://lm-server-server.onrender.com';
 
 document.addEventListener('DOMContentLoaded', () => {
   const loginForm = document.getElementById('login-form');
