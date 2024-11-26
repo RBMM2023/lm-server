@@ -1,4 +1,4 @@
-/*client/calendar.js
+//client/calendar.js
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       try {
         const response = await fetch(
-          /*'http://localhost:3000/api/calendar',/ 'https://lm-server-server.onrender.com/api/calendar',
+          /*'http://localhost:3000/api/calendar',*/ 'https://lm-server-server.onrender.com/api/calendar',
           {
             headers: {
               'Authorization': `Bearer ${token}`, // Include the token if available
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       try {
         const response = await fetch(
-          /*'http://localhost:3000/api/calendar/book',/ 'https://lm-server-server.onrender.com/api/calendar/book',
+          /*'http://localhost:3000/api/calendar/book',*/ 'https://lm-server-server.onrender.com/api/calendar/book',
           {
             method: 'POST',
             headers: {
@@ -97,92 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (error) {
         console.error('Error during fetch request:', error);
         alert('Failed to book the peg. Please try again.');
-      }
-    },
-  });
-
-  calendar.render();
-});*/
-document.addEventListener('DOMContentLoaded', () => {
-  const calendarEl = document.getElementById('calendar');
-
-  const calendar = new FullCalendar.Calendar(calendarEl, {
-    plugins: [FullCalendar.DayGrid, FullCalendar.Interaction],
-    initialView: 'dayGridMonth',
-    validRange: {
-      start: '2024-10-25',
-      end: '2070-12-31',
-    },
-    events: async function (info, successCallback, failureCallback) {
-      const token = sessionStorage.getItem('token');
-
-      try {
-        const response = await fetch('https://lm-server-server.onrender.com/', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const data = await response.json();
-
-        const events = data.map((event) => ({
-          title: `${event.peg}: ${
-            event.status === 'available' ? 'Available' : 'Booked'
-          }`,
-          date: event.date,
-          backgroundColor: event.status === 'available' ? 'green' : 'red',
-          borderColor: event.status === 'available' ? 'darkgreen' : 'darkred',
-          peg: event.peg,
-          status: event.status,
-        }));
-
-        successCallback(events);
-      } catch (error) {
-        console.error('Error fetching calendar events:', error);
-        failureCallback(error);
-      }
-    },
-    eventClick: async function (info) {
-      const token = sessionStorage.getItem('token');
-      if (!token) {
-        alert('You must be logged in to edit the calendar.');
-        return;
-      }
-
-      const peg = info.event.extendedProps.peg;
-      const date = info.event.start.toLocaleDateString('en-CA');
-      const currentStatus = info.event.extendedProps.status;
-
-      const newStatus = currentStatus === 'available' ? 'booked' : 'available';
-
-      try {
-        const response = await fetch(
-          'https://lm-server-server.onrender.com/api/calendar/book',
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({ date, peg, currentStatus }),
-          }
-        );
-
-        if (response.ok) {
-          info.event.setProp(
-            'backgroundColor',
-            newStatus === 'booked' ? 'red' : 'green'
-          );
-          info.event.setProp(
-            'title',
-            `${peg}: ${newStatus === 'booked' ? 'Booked' : 'Available'}`
-          );
-          info.event.setExtendedProp('status', newStatus);
-        } else {
-          const error = await response.json();
-          alert(error.message);
-        }
-      } catch (error) {
-        console.error('Error during fetch request:', error);
       }
     },
   });
