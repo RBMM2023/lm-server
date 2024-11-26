@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (calendarEl) {
     // Initialize FullCalendar
     const calendar = new FullCalendar.Calendar(calendarEl, {
-      plugins: [FullCalendar.dayGridPlugin, FullCalendar.interactionPlugin],
+      plugins: [FullCalendar.dayGrid, FullCalendar.interaction], // Use FullCalendar.dayGrid and FullCalendar.interaction here
       initialView: 'dayGridMonth',
       validRange: {
         start: '2024-10-25', // Define your preferred start date here
