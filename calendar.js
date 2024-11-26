@@ -117,14 +117,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const token = sessionStorage.getItem('token');
 
       try {
-        const response = await fetch(
-          'https://lm-server-server.onrender.com/api/calendar',
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await fetch('https://lm-server-server.onrender.com/', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         const data = await response.json();
 
         const events = data.map((event) => ({
