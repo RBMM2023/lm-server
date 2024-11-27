@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       try {
         const response = await fetch(
-          /*'http://localhost:3000/api/calendar',*/ 'https://lm-server-server.onrender.com/api/calendar',
+          /*'http://localhost:3000/api/calendar',*/ 'https://lm-server-server.onrender.com/',
           {
             headers: {
               'Authorization': `Bearer ${token}`, // Include the token if available
