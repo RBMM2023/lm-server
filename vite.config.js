@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/lm-server-client/', // Ensure this matches your GitHub repository name
+  base: './', // Ensure this matches your GitHub repository name
   build: {
     rollupOptions: {
       input: {
@@ -16,12 +16,14 @@ export default defineConfig({
       },
       output: {
         manualChunks: {
-          // Ensure FullCalendar dependencies are bundled correctly
-          fullcalendar: [
+          calendar: ['./calendar.js'],
+          auth: ['./auth.js'],
+          /* Ensure FullCalendar dependencies are bundled correctly
+          fullCalendar: [
             '@fullcalendar/core',
             '@fullcalendar/daygrid',
             '@fullcalendar/interaction',
-          ],
+          ],*/
         },
       },
     },
