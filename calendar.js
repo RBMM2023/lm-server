@@ -104,11 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
   calendar.render();
 });*/
 
-// client/calendar.js
-import { Calendar } from 'https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.js';
-import dayGridPlugin from 'https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/daygrid.min.js';
-import interactionPlugin from 'https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/interaction.min.js';
-
 document.addEventListener('DOMContentLoaded', () => {
   const calendarEl = document.getElementById('calendar');
 
