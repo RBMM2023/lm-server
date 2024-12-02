@@ -198,5 +198,8 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  calendar.render();
+  //calendar.render();
+  setTimeout(function () {
+    calendar.render();
+  }, 2000);
 });
