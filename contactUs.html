@@ -222,6 +222,14 @@
       content="https://www.leylandmillfishery.co.uk/contactUs"
     />
     <meta property="og:type" content="website" />
+    <script>
+      if (typeof FullCalendar === 'undefined') {
+        console.error('FullCalendar is not loaded.');
+      } else {
+        console.log('FullCalendar is successfully loaded.');
+      }
+    </script>
+
     <script src="./assets/index.global.js" type="module"></script>
     <script src="./assets/index.global.min.js" type="module"></script>
 
