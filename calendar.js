@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize the calendar regardless of login status
   const calendar = new FullCalendar.Calendar(calendarEl, {
-    plugins: [FullCalendar.dayGridPlugin, FullCalendar.interactionPlugin],
+    // No need to use plugins in the initialization, they are already bundled in the global.min.js
     initialView: 'dayGridMonth',
 
     // Add the validRange option here to limit the date range visible on the calendar
