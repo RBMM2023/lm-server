@@ -105,34 +105,35 @@ document.addEventListener('DOMContentLoaded', () => {
 });*/
 
 document.addEventListener('DOMContentLoaded', () => {
+  if (typeof FullCalendar === 'undefined') {
+    console.error('FullCalendar is not loaded');
+    return; // Stop the script if FullCalendar is not loaded
+  }
+
   const calendarEl = document.getElementById('calendar');
 
   // Initialize the calendar regardless of login status
   const calendar = new FullCalendar.Calendar(calendarEl, {
-    // No need to use plugins in the initialization, they are already bundled in the global.min.js
+    plugins: [FullCalendar.dayGridPlugin, FullCalendar.interactionPlugin],
     initialView: 'dayGridMonth',
-
-    // Add the validRange option here to limit the date range visible on the calendar
     validRange: {
-      start: '2024-10-25', // Define your preferred start date here
-      end: '2070-12-31', // Define your preferred end date here
+      start: '2024-10-25',
+      end: '2070-12-31',
     },
-
     events: async function (info, successCallback, failureCallback) {
-      const token = sessionStorage.getItem('token'); // Get token for fetching events
+      const token = sessionStorage.getItem('token');
 
       try {
         const response = await fetch(
           'https://lm-server-server.onrender.com/api/calendar',
           {
             headers: {
-              'Authorization': `Bearer ${token}`, // Include the token if available
+              'Authorization': `Bearer ${token}`,
             },
           }
         );
         const data = await response.json();
 
-        // Transform data to FullCalendar events format
         const events = data.map((event) => ({
           title: `${event.peg}: ${
             event.status === 'available' ? 'Available' : 'Booked'
@@ -150,20 +151,17 @@ document.addEventListener('DOMContentLoaded', () => {
         failureCallback(error);
       }
     },
-
     eventClick: async function (info) {
-      const token = sessionStorage.getItem('token'); // Get token for editing
-
+      const token = sessionStorage.getItem('token');
       if (!token) {
         alert('You must be logged in to edit the calendar.');
-        return; // Prevent further action if not logged in
+        return;
       }
 
-      const peg = info.event.extendedProps.peg; // Get the peg info from the clicked event
-      const date = info.event.start.toLocaleDateString('en-CA'); // Get the date of the clicked event
-      const currentStatus = info.event.extendedProps.status; // Get the current status from the event
-
-      const newStatus = currentStatus === 'available' ? 'booked' : 'available'; // Toggle the status
+      const peg = info.event.extendedProps.peg;
+      const date = info.event.start.toLocaleDateString('en-CA');
+      const currentStatus = info.event.extendedProps.status;
+      const newStatus = currentStatus === 'available' ? 'booked' : 'available';
 
       try {
         const response = await fetch(
@@ -172,15 +170,14 @@ document.addEventListener('DOMContentLoaded', () => {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`, // Send the token in the Authorization header
+              'Authorization': `Bearer ${token}`,
             },
-            body: JSON.stringify({ date, peg, currentStatus }), // Pass the current status
+            body: JSON.stringify({ date, peg, currentStatus }),
           }
         );
 
         if (response.ok) {
           const result = await response.json();
-          // Update the event's properties based on the new status
           info.event.setProp(
             'backgroundColor',
             newStatus === 'booked' ? 'red' : 'green'
@@ -189,11 +186,10 @@ document.addEventListener('DOMContentLoaded', () => {
             'title',
             `${peg}: ${newStatus === 'booked' ? 'Booked' : 'Available'}`
           );
-          info.event.setExtendedProp('status', newStatus); // Update the status in the event object
+          info.event.setExtendedProp('status', newStatus);
         } else {
           const error = await response.json();
           alert(error.message);
-          console.error('Error booking peg:', error);
         }
       } catch (error) {
         console.error('Error during fetch request:', error);
