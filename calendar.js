@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       try {
         const response = await fetch(
-          'http://localhost:3000/api/calendar',
+          //'http://localhost:3000/api/calendar',
           'https://lm-server-server.onrender.com/api/calendar',
           {
             headers: {
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       try {
         const response = await fetch(
-          'http://localhost:3000/api/calendar/book',
+          //'http://localhost:3000/api/calendar/book',
           'https://lm-server-server.onrender.com/api/calendar/book',
           {
             method: 'POST',
