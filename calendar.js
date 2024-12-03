@@ -1,7 +1,10 @@
-//client/calendar.js
+/*client/calendar.js
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction';
+import interactionPlugin from '@fullcalendar/interaction';*/
+const { Calendar } = FullCalendar;
+const dayGridPlugin = FullCalendarDayGrid;
+const interactionPlugin = FullCalendarInteraction;
 
 document.addEventListener('DOMContentLoaded', () => {
   const calendarEl = document.getElementById('calendar');
