@@ -1,5 +1,5 @@
 //client/calendar.js
-import { Calendar } from './node_modules/@fullcalendar';
+import { Calendar } from './node_modules/@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 
